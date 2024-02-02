@@ -25,7 +25,7 @@ main_program{
 		return 0;
 	}
 
-	if(leap_year){
+    if(leap_year){
         if(d <= 31){
             m = 1;
         }else if(d <= 60){
