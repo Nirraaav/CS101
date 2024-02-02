@@ -1,29 +1,29 @@
 #include <simplecpp>
 
 main_program{
-	int y, d, m;
-	cin >> y >> d;
+    int y, d, m;
+    cin >> y >> d;
 
-	if((y < 1900) || (y > 2300)){
-		cout << "invalid year" << "\n";
-		if((d < 1) || (d > 366)){
-			cout << "invalid date" << "\n";
-		}
-		return 0;
-	}
+    if((y < 1900) || (y > 2300)){
+        cout << "invalid year" << "\n";
+        if((d < 1) || (d > 366)){
+            cout << "invalid date" << "\n";
+        }
+        return 0;
+    }  
 
-	bool leap_year = (y % 4 == 0 && y % 100 != 0) || (y % 400 == 0);
-
-	if((d < 1)){
-		cout << "invalid date" << "\n";
-		return 0;
+    bool leap_year = (y % 4 == 0 && y % 100 != 0) || (y % 400 == 0);
+    
+    if((d < 1)){
+        cout << "invalid date" << "\n";
+        return 0;
 	}else if(leap_year && (d > 366)){
-		cout << "invalid date" << "\n";		
-		return 0;
-	}else if(!leap_year && (d > 365)){
-		cout << "invalid date" << "\n";	
-		return 0;
-	}
+        cout << "invalid date" << "\n";		
+        return 0; 
+    }else if(!leap_year && (d > 365)){
+        cout << "invalid date" << "\n";	
+	   return 0;
+    }
 
     if(leap_year){
         if(d <= 31){
