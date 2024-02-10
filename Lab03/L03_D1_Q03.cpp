@@ -1,21 +1,30 @@
-#include<iostream>
-#include<vector>
-#include<algorithm>
+#include<simplecpp>
 
-using namespace std;
-
-int main(){
-	int n;
+main_program{
+	long long int n;
 	cin >> n;
-	vector<int> val;
-	while(n != 0){
-		int a = n % 2;
-		val.push_back(a);
-		n /= 2;
+	if(n == 0){
+		cout << 0 << "\n";
+	}else{
+		long long int digits = 0;
+		for(long long int i = 1; i <= n; i *= 2){
+			digits++;
+		}
+		
+		long long int divisor = 1;
+		for(long long int i = 0; i < digits-1; i++){
+			divisor *= 2;
+		}	
+
+		while(digits--){
+			if(n >= divisor){
+				cout << 1;
+				n -= divisor;
+			}else{
+				cout << 0;
+			}
+			divisor /= 2;
+		}
+		cout << "\n";
 	}
-	reverse(val.begin(), val.end());
-	for(int i = 0; i < val.size(); i++){
-		cout << val[i];
-	}
-	cout << endl;
 }
