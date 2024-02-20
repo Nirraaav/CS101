@@ -1,4 +1,5 @@
 #include <simplecpp>
+// #include <climits>
 
 long double f(long double a, long double b, long double c, long double x){
 	long double val = a*x*x + b*x + c;
@@ -10,14 +11,15 @@ long double root(long double &a, long double &b, long double &c, long double &m,
 	if(m == n){
 		return m;
 	}
+	cout << m << " " << n << "\n";
 	if(abs(f(a, b, c, mid)) < eps){
 		return mid;
-	}else if(f(a, b, c, mid)*f(a, b, c, m) > 0){
-		return root(a, b, c, mid, n, eps);
-	}else if(f(a, b, c, mid)*f(a, b, c, n) > 0){
+	}else if(f(a, b, c, mid)*f(a, b, c, m) < 0){
 		return root(a, b, c, m, mid, eps);
+	}else if(f(a, b, c, mid)*f(a, b, c, n) < 0){
+		return root(a, b, c, mid, n, eps);
 	}else{
-		return mid;
+		return -1;
 	}
 }
 
