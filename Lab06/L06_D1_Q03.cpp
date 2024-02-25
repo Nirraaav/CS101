@@ -18,7 +18,7 @@ main_program{
 	long double x_new = x_old - (f(a, b, c, x_old)/f_dash(a, b, c, x_old));
 	long double eps = 0.0001;
 	while(abs(x_new - x_old) >= eps){
-		cout << x_old << " " << x_new << "\n";
+		// cout << x_old << " " << x_new << "\n";
 		x_old = x_new;
 		x_new = x_old - (f(a, b, c, x_old)/f_dash(a, b, c, x_old));
 	}
