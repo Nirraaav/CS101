@@ -11,6 +11,5 @@ main_program{
 			result++;
 		}
 	}
-
 	cout << result << "\n";
 }

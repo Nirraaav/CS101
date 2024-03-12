@@ -17,46 +17,7 @@ void bubble_sort(long long int a[], long long int n){
 }
 
 main_program{
-  //   long double a[10000], b[10000];
-  //   long long int an = 0, bn = 0;
-  //   long double x;
-
-  //   while (cin >> x) {
-  //       if(x == -1){
-  //           break;
-  //       }
-  //       a[an] = x;
-  //       an++;
-  // } 
-
-  //   while (cin >> x) {
-  //       if(x == -1){
-  //           break;
-  //       }
-  //       b[bn] = x;
-  //       bn++;
-  //   } 
-
-  //   bubble_sort(a, an);
-  //   bubble_sort(b, bn);
-
-  //   long long int ai = 0, bi = 0;
-  //   while(ai < an || bi < bn){
-  //       if(a[ai] <= b[bi]){
-  //           while(a[ai] <= b[bi]){
-  //               cout << a[ai] << " ";
-  //               ai++;
-  //           }
-  //       }else{
-  //           while(a[ai] > b[bi]){
-  //               cout << b[bi] << " ";
-  //               bi++;
-  //           }
-  //       }
-  //   }
-  //   cout << "\n";
-
-    long long int a[999];
+    long long int a[10000];
     long long int n = 0;
     long long int x;
     while (cin >> x) {
@@ -76,7 +37,7 @@ main_program{
     } 
 
     bubble_sort(a, n);
-    
+
     for(long long int i = 0; i < n; i++){
         if(i == 0){
             cout << a[i] << " ";
