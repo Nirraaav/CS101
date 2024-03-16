@@ -18,8 +18,8 @@ void bubble_sort(long long int a[], long long int n){
 
 main_program{
     long long int a[10000];
-    long long int n = 0;
     long long int x;
+    long long int n = 0;
     while (cin >> x) {
         if(x == -1){
             break;
