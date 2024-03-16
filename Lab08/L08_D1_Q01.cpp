@@ -18,7 +18,8 @@ main_program{
 	for(long long int i = 0; i < idx; i++){
 		if(roll[i] == check){
 			count++;
+			cout << i << "\n";
 		}
 	}
-	cout << (count ? count : -1) << "\n";
+	cout << (count ? "" : "-1") << "\n";
 }
