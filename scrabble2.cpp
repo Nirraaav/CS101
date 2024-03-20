@@ -51,6 +51,10 @@ void insertWord(TrieNode* root, string word) {
     TrieNode* current = root;
     for (char c : word) {
         int index = c - 'A';
+        if (index < 0 || index >= 26) {
+            // Handle characters outside the valid range
+            continue;
+        }
         if (!current->children[index])
             current->children[index] = getNewNode();
         current = current->children[index];
@@ -63,8 +67,10 @@ bool searchWord(TrieNode* root, string word) {
     TrieNode* current = root;
     for (char c : word) {
         int index = c - 'A';
-        if (!current->children[index])
+        if (index < 0 || index >= 26 || !current->children[index]) {
+            // Handle characters outside the valid range or Trie node is null
             return false;
+        }
         current = current->children[index];
     }
     return (current != nullptr && current->isEndOfWord);
@@ -77,12 +83,19 @@ void solve() {
             cin >> c[i][j];
         }
     }
+
+    // dbg(c);
+
     vector<char> have(7);
     for (ll i = 0; i < 7; i++) {
         cin >> have[i];
     }
 
+    // dbg(have);
+
     TrieNode* root = getNewNode(); // Initialize the Trie
+
+    // cout << root << "\n";
 
     vector<string> words;
     string word;
@@ -106,6 +119,10 @@ void solve() {
             for (ll row = 0; row < 15; row++) {
                 for (ll col1 = 0; col1 + sz(w) - 1 < 15; col1++) {
                     ll col2 = col1 + sz(w) - 1;
+                    if (col2 >= 15) {
+                        // Ensure col2 is within valid range
+                        break;
+                    }
                     vector<char> have1 = have;
                     string current_word = "";
                     for (ll i = col1; i <= col2; i++)
@@ -128,6 +145,10 @@ void solve() {
             for (ll col = 0; col < 15; col++) {
                 for (ll row1 = 0; row1 + sz(w) - 1 < 15; row1++) {
                     ll row2 = row1 + sz(w) - 1;
+                    if (row2 >= 15) {
+                        // Ensure row2 is within valid range
+                        break;
+                    }
                     vector<char> have1 = have;
                     string current_word = "";
                     for (ll i = row1; i <= row2; i++)
