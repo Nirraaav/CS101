@@ -9,7 +9,7 @@ long double randuv(int u, int v){
 main_program{
 	long long int randi = time(NULL);
 	long long int points_in_circle = 0;
-	long long int num_times = 1000000;
+	long long int num_times = 10000;
 	long long int mod = 1e9+7;
 	for(long long int i = 0; i < num_times; i++){
 		randi *= rand();
