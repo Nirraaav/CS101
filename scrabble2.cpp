@@ -62,13 +62,17 @@ void insertWord(TrieNode* root, string word) {
     current->isEndOfWord = true;
 }
 
-// Check if a word exists in the Trie
-bool searchWord(TrieNode* root, string word) {
+// Check if a word exists in the Trie and contains only letters from 'have'
+bool searchWord(TrieNode* root, string word, vector<char>& have) {
     TrieNode* current = root;
     for (char c : word) {
         int index = c - 'A';
         if (index < 0 || index >= 26 || !current->children[index]) {
             // Handle characters outside the valid range or Trie node is null
+            return false;
+        }
+        if (find(have.begin(), have.end(), c) == have.end()) {
+            // Character not found in 'have'
             return false;
         }
         current = current->children[index];
@@ -127,7 +131,7 @@ void solve() {
                     string current_word = "";
                     for (ll i = col1; i <= col2; i++)
                         current_word += c[row][i];
-                    if (searchWord(root, current_word)) {
+                    if (searchWord(root, current_word, have)) {
                         w1 = current_word;
                         rows = true;
                         v1 = {col1 + 1, row + 1, col2 + 1, row + 1};
@@ -153,7 +157,7 @@ void solve() {
                     string current_word = "";
                     for (ll i = row1; i <= row2; i++)
                         current_word += c[i][col];
-                    if (searchWord(root, current_word)) {
+                    if (searchWord(root, current_word, have)) {
                         w2 = current_word;
                         cols = true;
                         v2 = {col + 1, row1 + 1, col + 1, row2 + 1};

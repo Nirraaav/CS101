@@ -11,25 +11,25 @@ main_program{
 	}
 	long long int top = 0, bottom = n-1, left = 0, right = n-1;
 	while(top <= bottom && left <= right){
-		for (int j = left; j <= right; j++) {
+		for (long long int j = left; j <= right; j++) {
             cout << a[top][j] << " ";
         }
         top++;
 
-        for (int i = top; i <= bottom; i++) {
+        for (long long int i = top; i <= bottom; i++) {
             cout << a[i][right] << " ";
         }
         right--;
 
         if (top <= bottom) {
-            for (int j = right; j >= left; j--) {
+            for (long long int j = right; j >= left; j--) {
                 cout << a[bottom][j] << " ";
             }
             bottom--;
         }
 
         if (left <= right) {
-            for (int i = bottom; i >= top; i--) {
+            for (long long int i = bottom; i >= top; i--) {
                 cout << a[i][left] << " ";
             }
             left++;
