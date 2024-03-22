@@ -1,17 +1,17 @@
 #include <simplecpp>
 
-main_program{
-	long long int n;
-	cin >> n;
-	long long int a[n][n];
-	for(long long int i = 0; i < n; i++){
-		for(long long int j = 0; j < n; j++){
-			cin >> a[i][j];
-		}
-	}
-	long long int top = 0, bottom = n-1, left = 0, right = n-1;
-	while(top <= bottom && left <= right){
-		for (long long int j = left; j <= right; j++) {
+main_program {
+    long long int n;
+    cin >> n;
+    long long int a[n][n];
+    for (long long int i = 0; i < n; i++) {
+        for (long long int j = 0; j < n; j++) {
+            cin >> a[i][j];
+        }
+    }
+    long long int top = 0, bottom = n - 1, left = 0, right = n - 1;
+    while (top <= bottom && left <= right) {
+        for (long long int j = left; j <= right; j++) {
             cout << a[top][j] << " ";
         }
         top++;
@@ -34,6 +34,6 @@ main_program{
             }
             left++;
         }
-	}
-	cout << "\n";
+    }
+    cout << "\n";
 }
