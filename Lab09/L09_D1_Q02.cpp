@@ -6,34 +6,34 @@ long double randuv(int u, int v){
 	return (long double) u + ((long double) rand() / ((long double) 1.0 + RAND_MAX)) * (v - u);
 }
 
-int checkwin(char a[3][3]) {
-    for (int i = 0; i < 3; i++) {
-        if (a[i][0] == a[i][1] && a[i][0] == a[i][2] && a[i][0] == 'X') {
-            return 1;
-        }
-        if (a[i][0] == a[i][1] && a[i][0] == a[i][2] && a[i][0] == 'O') {
-            return -1;
-        }
-        if (a[0][i] == a[1][i] && a[0][i] == a[2][i] && a[0][i] == 'X') {
-            return 1;
-        }
-        if (a[0][i] == a[1][i] && a[0][i] == a[2][i] && a[0][i] == 'O') {
-            return -1;
-        }
-    }
-    if (a[0][0] == a[1][1] && a[0][0] == a[2][2] && a[0][0] == 'X') {
-        return 1;
-    }
-    if (a[0][0] == a[1][1] && a[0][0] == a[2][2] && a[0][0] == 'O') {
-        return -1;
-    }
-    if (a[0][2] == a[1][1] && a[0][2] == a[2][0] && a[0][2] == 'X') {
-        return 1;
-    }
-    if (a[0][2] == a[1][1] && a[0][2] == a[2][0] && a[0][2] == 'O') {
-        return -1;
-    }
-    return 0;
+long long int checkwin(char a[3][3]) {
+	for (int i = 0; i < 3; i++) {
+		if (a[i][0] == a[i][1] && a[i][0] == a[i][2] && a[i][0] == 'X') {
+			return 1;
+		}
+		if (a[i][0] == a[i][1] && a[i][0] == a[i][2] && a[i][0] == 'O') {
+			return -1;
+		}
+		if (a[0][i] == a[1][i] && a[0][i] == a[2][i] && a[0][i] == 'X') {
+			return 1;
+		}
+		if (a[0][i] == a[1][i] && a[0][i] == a[2][i] && a[0][i] == 'O') {
+			return -1;
+		}
+	}
+	if (a[0][0] == a[1][1] && a[0][0] == a[2][2] && a[0][0] == 'X') {
+		return 1;
+	}
+	if (a[0][0] == a[1][1] && a[0][0] == a[2][2] && a[0][0] == 'O') {
+		return -1;
+	}
+	if (a[0][2] == a[1][1] && a[0][2] == a[2][0] && a[0][2] == 'X') {
+		return 1;
+	}
+	if (a[0][2] == a[1][1] && a[0][2] == a[2][0] && a[0][2] == 'O') {
+		return -1;
+	}
+	return 0;
 }
 main_program{
 	srand(time(NULL));
