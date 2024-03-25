@@ -32,7 +32,7 @@ typedef vector<long long int> vl;
 typedef vector<vector<long long int>> vvl;
 
 struct State {
-    vector<vector<ll>> board;
+    vvl board;
     ll steps;
 };
 
@@ -56,7 +56,7 @@ vector<State> getSuccessors(vvl &state, ll steps) {
         ll newRow = row + move.first;
         ll newCol = col + move.second;
         if (newRow >= 0 && newRow < sz(state) && newCol >= 0 && newCol < sz(state[newRow])) {
-            vector<vector<ll>> newState = state;
+            vvl newState = state;
             swap(newState[row][col], newState[newRow][newCol]);
             successors.push_back({newState, steps + 1});
         }
