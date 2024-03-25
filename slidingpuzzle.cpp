@@ -36,10 +36,6 @@ struct State {
     ll steps;
 };
 
-bool statesEqual(vvl &state1, vvl &state2) {
-    return state1 == state2;
-}
-
 vector<State> getSuccessors(vvl &state, ll steps) {
     vector<State> successors;
     ll row = -1, col = -1;
@@ -94,7 +90,7 @@ pair<ll, bool> bfs(vvl &initialState, vvl &goalState) {
         State currentState = q.front();
         q.pop();
 
-        if (statesEqual(currentState.board, goalState)) {
+        if (currentState.board == goalState) {
             return {currentState.steps, true};
         }
 
