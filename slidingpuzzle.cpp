@@ -107,7 +107,7 @@ pair<ll, bool> bfs(vvl &initialState, const vvl &goalState) {
 }
 
 void solve(){
-    vvl board(3, vector<ll>(3, -1));
+    vvl board(3, vl(3, -1));
     for(ll i = 0; i < 3; i++){
         for(ll j = 0; j < 3; j++){
             cin >> board[i][j];
