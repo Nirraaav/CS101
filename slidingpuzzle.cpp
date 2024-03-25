@@ -80,7 +80,7 @@ struct hash_state {
     }
 };
 
-pair<ll, bool> bfs(vvl &initialState, vvl &goalState) {
+pair<ll, bool> bfs(vvl &initialState, const vvl &goalState) {
     queue<State> q;
     unordered_set<vvl, hash_state> visited;
     q.push({initialState, 0});
