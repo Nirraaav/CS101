@@ -80,7 +80,7 @@ struct hash_state {
     }
 };
 
-pair<ll, bool> bfs(vvl &initialState, const vvl &goalState) {
+pair<ll, bool> bfs(vvl &initialState, vvl &goalState) {
     queue<State> q;
     unordered_set<vvl, hash_state> visited;
     q.push({initialState, 0});
@@ -116,7 +116,8 @@ void solve(){
     vvl goalState = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 
     auto [minSteps, found] = bfs(board, goalState);
-
+    // auto [minSteps, found] = bfs(goalState, board);
+    
     if (found) {
         cout << minSteps << "\n";
     }
