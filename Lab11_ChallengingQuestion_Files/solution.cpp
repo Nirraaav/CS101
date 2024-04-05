@@ -1,6 +1,6 @@
 #ifndef PRAGMA
-#pragma GCC optimize("O3,unroll-loops")
-#pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
+    #pragma GCC optimize("O3,unroll-loops")
+    #pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
 #endif
 
 #include <bits/stdc++.h>
@@ -9,9 +9,9 @@
 using namespace std;
 
 #ifdef DEBUG
-#include "/includes/debug.h"
+    #include "/includes/debug.h"
 #else
-#define dbg(...) 42
+    #define dbg(...) 42
 #endif
 
 typedef long long int ll;
@@ -33,76 +33,76 @@ typedef vector<long long int> vl;
 typedef vector<vector<long long int>> vvl;
 
 void solve() {
-  	vector<string> dict;
-  	ifstream file("dict.txt");
-  	string word;
-  	while (file >> word) {
-		dict.push_back(word);
-  	}
-  	file.close();
+    vector<string> dict;
+    ifstream file("dict.txt");
+    string word;
+    while (file >> word) {
+        dict.push_back(word);
+    }
+    file.close();
 
-	vector<string> words_6;
-	for (auto word : dict) {
-		if (word.size() == 6) {
-			words_6.push_back(word);
-		}
-	}
+    vector<string> words_6;
+    for (auto word : dict) {
+        if (word.size() == 6) {
+            words_6.push_back(word);
+        }
+    }
 
-  	vector<string> words;
-  	string input_word;
-  	while (cin >> input_word) {
-		input_word.erase(remove_if(input_word.begin(), input_word.end(), ::ispunct), input_word.end());
-		words.push_back(input_word);
-  	}
+    vector<string> words;
+    string input_word;
+    while (cin >> input_word) {
+        input_word.erase(remove_if(input_word.begin(), input_word.end(), ::ispunct), input_word.end());
+        words.push_back(input_word);
+    }
 
-  	for (auto word : words_6) {
-		string cipher = word;
-		char last = cipher.back();
-		for (int i = 1; i <= 26; i++) {
-	  		char nextLetter = last + i;
-			if (nextLetter > 'Z'){
-				nextLetter -= 26;
-			}
+    for (auto word : words_6) {
+        string cipher = word;
+        char last = cipher.back();
+        for (int i = 1; i <= 26; i++) {
+            char nextLetter = last + i;
+            if (nextLetter > 'Z'){
+                nextLetter -= 26;
+            }
 
-		  	if (cipher.find(nextLetter) == string::npos){
-				cipher += nextLetter;
-		  	}
-	}
+            if (cipher.find(nextLetter) == string::npos){
+                cipher += nextLetter;
+            }
+        }
 
-	bool check = true;
+        bool check = true;
 
-	for (auto &word : words) {
-	  	string decoded_word;
-	  	for (char c : word) {
-			if (isalpha(c)) {
-		  		ll index = cipher.find(c + 'A' - 'a');
-		  		decoded_word += 'A' + index;
-			} else {
-		  		decoded_word += c;
-			}
-	  	}
-	  	if (find(all(dict), decoded_word) == dict.end()) {
-			check = false;
-			break;
-	  	}
-	}
+        for (auto &word : words) {
+            string decoded_word;
+            for (char c : word) {
+                if (isalpha(c)) {
+                    ll index = cipher.find(c + 'A' - 'a');
+                    decoded_word += 'A' + index;
+                } else {
+                    decoded_word += c;
+                }
+            }
+            if (find(all(dict), decoded_word) == dict.end()) {
+                check = false;
+                break;
+            }
+        }
 
-	if (check) {
-	  	transform(all(cipher), cipher.begin(), ::tolower);
-	  	cout << cipher << endl;
-	  	break;
-	}
-  }
+        if (check) {
+            transform(all(cipher), cipher.begin(), ::tolower);
+            cout << cipher << endl;
+            break;
+        }
+    }
 }
 
 int main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
 
-  	ll t = 1;
-  	// cin >> t;
-  	while (t--) {
-		solve();
-  	}
+    ll t = 1;
+    // cin >> t;
+    while (t--) {
+        solve();
+    }
 }
