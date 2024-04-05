@@ -57,7 +57,6 @@ void solve(){
 
     for(auto word : words_6){
         string cipher = word;
-        // string cipher = "CARBON";
         char last = cipher.back();
         for (int i = 1; i <= 26; i++) {
             char nextLetter = last + i;
