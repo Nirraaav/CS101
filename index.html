@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directory</title>
+</head>
+<body>
+    <h1>Directory Listing</h1>
+    <ul id="file-list">
+        <!-- JavaScript will populate this list -->
+    </ul>
+
+    <script>
+        // Function to navigate to the folder page
+        function navigateToFolder(directoryPath) {
+            window.location.href = directoryPath;
+        }
+
+        // Function to display files in a directory
+        function displayFilesInDirectory(directoryPath) {
+            fetch(directoryPath + '/directory.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('directory.json not found');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const fileList = document.getElementById('file-list');
+                    fileList.innerHTML = ''; // Clear previous content
+                    // Loop through each item in the directory
+                    data.forEach(item => {
+                        console.log.println(item);
+                        const listItem = document.createElement('li');
+                        if (item.type === 'directory') {
+                            // If it's a directory, create a link to the directory
+                            listItem.innerHTML = `<a href="#" onclick="navigateToFolder('${directoryPath}/${item.name}')">${item.name}</a>`;
+                            fileList.appendChild(listItem);
+                        } else {
+                            // If it's a file
+                            const fileName = item.name;
+                            if (fileName.includes('.') && (fileName.endsWith('.cpp') || fileName.endsWith('.py') || fileName.endsWith('.pdf')) && !fileName.endsWith('.out')) {
+                                listItem.innerHTML = `<a href="${directoryPath}/${fileName}">${fileName}</a>`;
+                                fileList.appendChild(listItem);
+                            }
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching directory.json:', error);
+                    // If directory.json not found, display files without relying on it
+                    displayFilesWithoutDirectoryJSON(directoryPath);
+                });
+        }
+
+        // Function to display files in a directory without relying on directory.json
+        function displayFilesWithoutDirectoryJSON(directoryPath) {
+            fetch(directoryPath)
+                .then(response => response.text())
+                .then(text => {
+                    const parser = new DOMParser();
+                    const htmlDocument = parser.parseFromString(text, 'text/html');
+                    const links = htmlDocument.querySelectorAll('a[href]');
+                    const fileList = document.getElementById('file-list');
+                    fileList.innerHTML = ''; // Clear previous content
+                    links.forEach(link => {
+                        const href = link.getAttribute('href');
+                        if (href.endsWith('.cpp') || href.endsWith('.py') || href.endsWith('.pdf')) {
+                            const listItem = document.createElement('li');
+                            listItem.innerHTML = `<a href="${directoryPath}/${href}">${href}</a>`;
+                            fileList.appendChild(listItem);
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching directory contents:', error);
+                });
+        }
+
+        // Function to display files in the main repository
+        function displayMainRepoFiles() {
+            fetch('directory.json')
+                .then(response => response.json())
+                .then(data => {
+                    // Sort the data alphabetically by item name
+                    data.sort((a, b) => a.name.localeCompare(b.name));
+
+                    const fileList = document.getElementById('file-list');
+                    fileList.innerHTML = ''; // Clear previous content
+                    // Loop through each item in the main repository
+                    data.forEach(item => {
+                        if (item.type === 'file' && (item.name.endsWith('.cpp') || item.name.endsWith('.py') || item.name.endsWith('.pdf')) && item.depth === 0) {
+                            const listItem = document.createElement('li');
+                            // If it's a file with .cpp, .py, or .pdf extension, create a link to the file
+                            listItem.innerHTML = `<a href="${item.name}">${item.name}</a>`;
+                            fileList.appendChild(listItem);
+                        } else if (item.type === 'directory' && item.depth === 0) {
+                            const listItem = document.createElement('li');
+                            // If it's a directory at the first level, create a link to the directory
+                            listItem.innerHTML = `<a href="#" onclick="navigateToFolder('${item.name}')">${item.name}</a>`;
+                            fileList.appendChild(listItem);
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching directory.json:', error);
+                }); 
+        }
+
+        // Display files in the main repository initially
+        displayMainRepoFiles();
+    </script>
+</body>
+</html>
