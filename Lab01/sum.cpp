@@ -1,4 +1,4 @@
-#include<simplecpp>
+#include <simplecpp>
 
 main_program{
 	int a, b;
