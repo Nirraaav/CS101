@@ -48,8 +48,8 @@ void solve(){
 	long long int n, l, start, end;
 	cin >> n >> l >> start >> end;
 	vector<vector<long long int>> a(n, vector<long long int>(n, 0));
-	for(long long int i = 0; i < l; i++){
-		long long int x, y;
+	for(long long int i = 0; i < l; i++)
+{		long long int x, y;
 		cin >> x >> y;
 		a[x][y] = 1;
 		a[y][x] = 1;
