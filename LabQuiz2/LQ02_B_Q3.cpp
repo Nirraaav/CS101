@@ -32,11 +32,11 @@ main_program{
 	}
 
 	for(long long int i = 1; i <= n + 1; i++){
-		matrix_mul(a, a_orig, n);
 		if(a[s][d]){
-			cout << i + 1 << "\n";
-			break;
+			cout << i << "\n";
+			return 0;
 		}
+		matrix_mul(a, a_orig, n);
 	}
 	cout << -1 << "\n";
 }
