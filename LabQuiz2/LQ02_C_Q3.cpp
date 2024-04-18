@@ -39,7 +39,7 @@ main_program{
 		long long int mass = 0;
 		long long int vol = 0;
 		for(long long int j = 0; j < n; j++){
-			if(i & (1 << j)){
+			if(i & bin_pow(2, j)){
 				mass += m[j];
 				vol += v[j];
 			}
@@ -47,7 +47,7 @@ main_program{
 		if(vol <= max_vol && mass > max_mass){
 			max_mass = mass;
 			for(long long int j = 0; j < n; j++){
-				if(i & (1 << j)){
+				if(i & bin_pow(2, j)){
 					ans[j] = 1;
 				}
 			}
